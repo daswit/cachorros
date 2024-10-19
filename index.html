@@ -1,0 +1,656 @@
+<html><head><base href="https://cdn.jsdelivr.net/npm/"><title>Pixel Art Dogs - Interactive & Enhanced</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: #87CEEB;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    #87CEEB 0px,
+    #87CEEB 2px,
+    #97DEEB 2px,
+    #97DEEB 4px
+  );
+  animation: day-night-cycle 60s infinite;
+}
+
+@keyframes day-night-cycle {
+  0%, 100% { background-color: #87CEEB; }
+  50% { background-color: #191970; }
+}
+
+@keyframes falling-star {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(-100px, 100px) rotate(45deg); opacity: 0; }
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  animation: falling-star 2s linear infinite;
+}
+
+.cloud {
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  background: #FFF;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  animation: float-cloud 30s linear infinite;
+}
+
+.cloud:before, .cloud:after {
+  content: '';
+  position: absolute;
+  background: #FFF;
+  border-radius: 50%;
+}
+
+.cloud:before {
+  width: 25px;
+  height: 25px;
+  top: -15px;
+  left: 10px;
+}
+
+.cloud:after {
+  width: 35px;
+  height: 35px;
+  top: -20px;
+  right: 10px;
+}
+
+@keyframes float-cloud {
+  0% { left: -60px; }
+  100% { left: 100%; }
+}
+
+.dog-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+}
+
+.dog {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  animation: color-change 10s linear infinite;
+}
+
+@keyframes color-change {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.dog:hover {
+  transform: scale(1.1);
+}
+
+.yorkshire {
+  background: 
+    linear-gradient(45deg, #D2691E 25%, transparent 25%) -10px 0,
+    linear-gradient(-45deg, #D2691E 25%, transparent 25%) -10px 0,
+    linear-gradient(45deg, transparent 75%, #D2691E 75%),
+    linear-gradient(-45deg, transparent 75%, #D2691E 75%);
+  background-size: 20px 20px;
+  background-color: #8B4513;
+}
+
+.corgi {
+  background: 
+    linear-gradient(45deg, #FFA500 25%, transparent 25%) -10px 0,
+    linear-gradient(-45deg, #FFA500 25%, transparent 25%) -10px 0,
+    linear-gradient(45deg, transparent 75%, #FFA500 75%),
+    linear-gradient(-45deg, transparent 75%, #FFA500 75%);
+  background-size: 20px 20px;
+  background-color: #FFD700;
+}
+
+.dachshund {
+  background: 
+    linear-gradient(45deg, #000 25%, transparent 25%) -10px 0,
+    linear-gradient(-45deg, #000 25%, transparent 25%) -10px 0,
+    linear-gradient(45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 20px 20px;
+  background-color: #333;
+}
+
+.eye {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
+  top: 20px;
+  animation: blink 3s infinite;
+}
+
+@keyframes blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+.eye.left { left: 15px; }
+.eye.right { right: 15px; }
+
+.nose {
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  background: #000;
+  border-radius: 50%;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: sniff 1s infinite;
+}
+
+@keyframes sniff {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.1); }
+}
+
+.tail {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  background: inherit;
+  bottom: 0;
+  right: -15px;
+  transform-origin: bottom left;
+  animation: wag-tail 0.5s infinite alternate;
+}
+
+@keyframes wag-tail {
+  0% { transform: rotate(-10deg); }
+  100% { transform: rotate(10deg); }
+}
+
+.ear {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: inherit;
+  top: -10px;
+  animation: ear-twitch 5s infinite;
+}
+
+@keyframes ear-twitch {
+  0%, 90%, 100% { transform: rotate(0); }
+  95% { transform: rotate(5deg); }
+}
+
+.ear.left { left: 5px; transform: rotate(-30deg); }
+.ear.right { right: 5px; transform: rotate(30deg); }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0) rotate(0); opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+.sun {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #FFD700;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #FFD700;
+  animation: sun-pulse 2s infinite alternate;
+}
+
+.moon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #FFFFFF;
+  opacity: 0;
+  transition: opacity 5s;
+}
+
+@keyframes moon-phase {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.8); }
+}
+
+@keyframes bird-fly {
+  0% { left: -50px; top: 20%; }
+  100% { left: 100%; top: 40%; }
+}
+
+.bird {
+  position: absolute;
+  font-size: 20px;
+  animation: bird-fly 10s linear infinite;
+}
+
+.fish {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  font-size: 20px;
+  animation: fish-jump 5s ease-in-out infinite;
+}
+
+@keyframes fish-jump {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-50px) rotate(180deg); }
+}
+
+.grass {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: repeating-linear-gradient(
+    45deg,
+    #228B22,
+    #228B22 10px,
+    #32CD32 10px,
+    #32CD32 20px
+  );
+  animation: grass-wave 2s infinite linear;
+}
+
+@keyframes grass-wave {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 0; }
+}
+
+.butterfly {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #FF69B4;
+  border-radius: 50%;
+  animation: butterfly-fly 10s infinite linear;
+}
+
+.butterfly::before,
+.butterfly::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  background: #FF69B4;
+  border-radius: 50% 50% 0 0;
+  animation: butterfly-wings 0.2s infinite alternate;
+}
+
+.butterfly::before {
+  left: -8px;
+  transform-origin: right;
+}
+
+.butterfly::after {
+  right: -8px;
+  transform-origin: left;
+}
+
+@keyframes butterfly-fly {
+  0% { top: 100%; left: -10%; }
+  25% { top: 50%; left: 25%; }
+  50% { top: 20%; left: 50%; }
+  75% { top: 50%; left: 75%; }
+  100% { top: 100%; left: 110%; }
+}
+
+@keyframes butterfly-wings {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(60deg); }
+}
+
+.speech-bubble {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  border-radius: 15px;
+  padding: 15px;
+  max-width: 80%;
+  font-size: 14px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.speech-bubble::after {
+  content: none;
+}
+
+.speech-bubble.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 600px) {
+  .speech-bubble {
+    font-size: 12px;
+    padding: 10px;
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dog-container {
+    flex-direction: column;
+    height: 300px;
+    width: 100px;
+  }
+  
+  .dog {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .eye {
+    width: 8px;
+    height: 8px;
+    top: 15px;
+  }
+  
+  .eye.left { left: 12px; }
+  .eye.right { right: 12px; }
+  
+  .nose {
+    width: 10px;
+    height: 6px;
+    bottom: 20px;
+  }
+  
+  .tail {
+    width: 15px;
+    height: 8px;
+    right: -12px;
+  }
+  
+  .ear {
+    width: 15px;
+    height: 15px;
+    top: -8px;
+  }
+
+  .sun {
+    width: 40px;
+    height: 40px;
+  }
+
+  .moon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .grass {
+    height: 20px;
+  }
+
+  .speech-bubble {
+    font-size: 10px;
+    max-width: 150px;
+    padding: 8px;
+  }
+}
+
+/* Enhanced animations */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.sparkle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #FFD700;
+  border-radius: 50%;
+  animation: sparkle 1s infinite;
+}
+
+@keyframes heart-beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  color: #FF69B4;
+  animation: heart-beat 1s infinite;
+}
+
+@keyframes rainbow-color {
+  0% { color: red; }
+  14% { color: orange; }
+  28% { color: yellow; }
+  42% { color: green; }
+  57% { color: blue; }
+  71% { color: indigo; }
+  85% { color: violet; }
+  100% { color: red; }
+}
+
+.rainbow-text {
+  animation: rainbow-color 5s infinite;
+}
+</style></head><body>
+<div class="background"></div>
+<div class="sun"></div>
+<div class="moon"></div>
+<div class="cloud" style="top: 20%; animation-duration: 35s;"></div>
+<div class="cloud" style="top: 40%; animation-duration: 25s; animation-delay: 5s;"></div>
+<div class="cloud" style="top: 60%; animation-duration: 30s; animation-delay: 10s;"></div>
+
+<div class="dog-container">
+  <div class="dog yorkshire" data-message="Te cuido desde el cielo">
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+    <div class="nose"></div>
+    <div class="ear left"></div>
+    <div class="ear right"></div>
+    <div class="tail"></div>
+    <div class="sparkle" style="top: 10%; left: 10%;"></div>
+    <div class="sparkle" style="top: 20%; right: 10%;"></div>
+  </div>
+  <div class="dog corgi" data-message="Yo soy tranquila">
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+    <div class="nose"></div>
+    <div class="ear left"></div>
+    <div class="ear right"></div>
+    <div class="tail"></div>
+    <div class="heart" style="top: -10%; right: -10%;">❤️</div>
+  </div>
+  <div class="dog dachshund" data-message="Yo soy un mimado que se orina en el sofá">
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+    <div class="nose"></div>
+    <div class="ear left"></div>
+    <div class="ear right"></div>
+    <div class="tail"></div>
+    <div class="sparkle" style="bottom: 10%; left: 50%;"></div>
+  </div>
+</div>
+
+<div class="grass"></div>
+<div class="butterfly"></div>
+
+<script>
+function animateDogs() {
+  const dogs = document.querySelectorAll('.dog');
+  dogs.forEach((dog, index) => {
+    dog.style.animation = `bounce 1s ease-in-out ${index * 0.2}s infinite`;
+  });
+}
+
+function createStars() {
+  setInterval(() => {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = `${Math.random() * 50}%`;
+    star.style.right = `${Math.random() * 100}%`;
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 2000);
+  }, 1000);
+}
+
+function toggleMoonSun() {
+  const sun = document.querySelector('.sun');
+  const moon = document.querySelector('.moon');
+  setInterval(() => {
+    sun.style.opacity = sun.style.opacity === '0' ? '1' : '0';
+    moon.style.opacity = moon.style.opacity === '0' ? '1' : '0';
+  }, 30000);
+}
+
+function createBird() {
+  const bird = document.createElement('div');
+  bird.className = 'bird';
+  bird.textContent = '🐦';
+  document.body.appendChild(bird);
+}
+
+function createFish() {
+  const fish = document.createElement('div');
+  fish.className = 'fish';
+  fish.textContent = '🐠';
+  document.body.appendChild(fish);
+}
+
+function createPixelArtEffect() {
+  const pixelSize = window.innerWidth <= 600 ? 2 : 4;
+  const style = document.createElement('style');
+  style.textContent = `
+    body {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+    .dog, .cloud, .sun, .butterfly {
+      transform: scale(${pixelSize});
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+    .dog-container {
+      transform: translate(-50%, -50%) scale(${pixelSize});
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+function addFloatingObjects() {
+  const container = document.body;
+  const objects = ['🦴', '🎾', '🐾', '🍖'];
+  setInterval(() => {
+    const obj = document.createElement('div');
+    obj.textContent = objects[Math.floor(Math.random() * objects.length)];
+    obj.style.position = 'absolute';
+    obj.style.left = Math.random() * 100 + 'vw';
+    obj.style.top = '100%';
+    obj.style.fontSize = (Math.random() * 20 + 10) + 'px';
+    obj.style.animation = 'float-up 7s linear';
+    container.appendChild(obj);
+    setTimeout(() => container.removeChild(obj), 7000);
+  }, 2000);
+}
+
+function createButterflies() {
+  const container = document.body;
+  for (let i = 0; i < 5; i++) {
+    const butterfly = document.createElement('div');
+    butterfly.className = 'butterfly';
+    butterfly.style.animationDelay = `${i * 2}s`;
+    container.appendChild(butterfly);
+  }
+}
+
+function handleResize() {
+  createPixelArtEffect();
+}
+
+function showSpeechBubble(dog) {
+  const existingBubble = document.querySelector('.speech-bubble');
+  if (existingBubble) {
+    existingBubble.remove();
+  }
+
+  const bubble = document.createElement('div');
+  bubble.className = 'speech-bubble';
+  bubble.innerHTML = `<span class="rainbow-text">${dog.dataset.message}</span>`;
+  
+  document.body.appendChild(bubble);
+  
+  setTimeout(() => {
+    bubble.classList.add('show');
+    bubble.style.animation = 'bubble-float 2s ease-in-out infinite';
+  }, 10);
+}
+
+function hideSpeechBubble() {
+  const bubble = document.querySelector('.speech-bubble');
+  if (bubble) {
+    bubble.classList.remove('show');
+    setTimeout(() => bubble.remove(), 300);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  animateDogs();
+  createPixelArtEffect();
+  createStars();
+  toggleMoonSun();
+  createBird();
+  createFish();
+  addFloatingObjects();
+  createButterflies();
+  window.addEventListener('resize', handleResize);
+
+  const dogs = document.querySelectorAll('.dog');
+  dogs.forEach(dog => {
+    dog.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showSpeechBubble(dog);
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.dog')) {
+      hideSpeechBubble();
+    }
+  });
+});
+</script>
+
+</body></html>
